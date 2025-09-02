@@ -5,4 +5,6 @@ class DashboardPage:
         self.page = page
 
     def open_campaigns(self):
-        self.page.click("text=Campaigns")
+        self.page.click("//span[text()='Campaigns']")
+
+

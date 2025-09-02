@@ -10,8 +10,13 @@ class SignupPage:
         self.mobile_signup = "input[id='number']"
 
 
-    def create_account(self, email, password):
-        self.page.click("text=Sign up")
+    def create_account(self, fullName,email, mobile_signup, password):
+        self.page.click("//span[text()='Sign up']")
+        self.page.fill(self.fullName, fullName)
         self.page.fill(self.email_input, email)
+        self.page.fill(self.mobile_signup,mobile_signup)
         self.page.fill(self.password_input, password)
+        self.page.wait_for_timeout(2000)
         self.page.click(self.signup_button)
+        self.page.wait_for_timeout(5000)
+
