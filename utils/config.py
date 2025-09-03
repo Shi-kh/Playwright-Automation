@@ -6,8 +6,9 @@ TEST_PHONE_NUMBER = "9870032503"
 TEST_FULLNAME = "Naruto Uzumaki"
 
 CAMPAIGN_TITLE = "Automated Campaign - Reelo"
-MESSAGE = "RS Big brand"
-SMS_MESSAGE = "Hello! This is a test campaign from Shikha - for the special 9Ratri"
+MESSAGE = "Hello! This is a test campaign"
+SMS_MESSAGE = "Org by SHIKHA - for the special 9Ratri"
+IMAGE_PATH = "C:\\Users\\shikha\\Pictures\\Saved Pictures\\bird_2.jpg"
 
 
 # brandName = input[id="store_name"]
