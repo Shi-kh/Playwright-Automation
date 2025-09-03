@@ -13,10 +13,6 @@ class CampaignPage:
         self.page.click("//button[@aria-label='Close']")
         self.page.click("(//div[@class='campTemplate'])[1]")
 
-    # def close_popup(self):
-    #     self.page.wait_for_timeout(3000)
-    #     self.page.click("//button[@aria-label='Close']")
-
     def select_sms_channel(self):
         self.page.click("//div[text()='SMS']")
         self.page.click("//span[text()='Customise and Send']")
@@ -30,27 +26,46 @@ class CampaignPage:
 
     def enter_contact_phone(self):
         self.page.wait_for_timeout(2000)
-        # self.page.fill(".filler", phone)
+        self.page.click(self.nextButton)
         # self.page.wait_for_timeout(2000)
-        self.page.click(self.nextButton)
+        # self.page.click(self.nextButton)
+
+    def upload_logo(self, image_path: str):
+        """
+        Uploads a logo image on the campaign creative page.
+        :param image_path: Absolute path of the image file to upload
+        """
+        # Locator for file input (hidden inside "Upload your logo" button)
+        file_input = self.page.locator(".upload-btn")
+
+        # Attach the file
+        file_input.set_input_files(image_path)
+        self.page.wait_for_timeout(5000)
+
+        print(f"Logo uploaded successfully → {image_path}")
+
+    def edit_sms_content(self, first_text, second_text):
+        # Locate all spans inside the SMS editor
+        spans = self.page.locator("//div[@class='textarea']//span[@contenteditable='true']")
+
+        # Ensure there are at least 2 spans
+        count = spans.count()
         self.page.wait_for_timeout(2000)
-        self.page.click(self.nextButton)
 
-    def edit_sms_content(self, message, smsmsg):
-        # Locate the contenteditable div (container for SMS text)
-        sms_editor = self.page.locator("//div[@class='textarea']")
-
-        # Click inside the editor
-        sms_editor.click()
-
-        # Select all and delete existing text
+        # Clear first field
+        spans.nth(0).click()
         self.page.keyboard.press("Control+A")
         self.page.keyboard.press("Backspace")
+        spans.nth(0).type(first_text)
 
-        # Type new message
-        sms_editor.type(message)
+        # Clear second span
+        spans.nth(1).click()
+        self.page.keyboard.press("Control+A")
+        self.page.keyboard.press("Backspace")
+        spans.nth(1).type(second_text)
+        self.page.click(self.nextButton)
 
-        print(f"SMS updated to: {message}")
+        print(f"Updated SMS spans → 1: '{first_text}', 2: '{second_text}'")
 
     def test_sms(self, phone):
         current_value = self.page.locator(self.inputField).input_value()
