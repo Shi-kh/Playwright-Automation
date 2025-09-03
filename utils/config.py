@@ -7,7 +7,7 @@ TEST_FULLNAME = "Naruto Uzumaki"
 
 CAMPAIGN_TITLE = "Automated Campaign - Reelo"
 MESSAGE = "RS Big brand"
-SMS_MESSAGE = "Hello! This is a test campaign from Shikha."
+SMS_MESSAGE = "Hello! This is a test campaign from Shikha - for the special 9Ratri"
 
 
 # brandName = input[id="store_name"]
