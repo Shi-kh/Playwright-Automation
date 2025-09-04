@@ -22,6 +22,7 @@ class CampaignPage:
 
     def enter_campaign_title(self, title):
         self.page.fill(".input input[type='text']", title)
+        self.page.wait_for_timeout(2000)
         self.page.click(self.nextButton)
 
     def enter_contact_phone(self):
@@ -29,9 +30,8 @@ class CampaignPage:
         self.page.click(self.nextButton)
 
     def upload_logo(self, image_path: str):
-        # Locator for file input (hidden inside "Upload your logo" button)
         file_input = self.page.locator(".upload-btn")
-
+        self.page.wait_for_timeout(2000)
         # Attach the file
         file_input.set_input_files(image_path)
         self.page.click("//span[text()='Save']")
