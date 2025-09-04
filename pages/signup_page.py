@@ -8,15 +8,28 @@ class SignupPage:
         self.signup_button = "button[type='submit']"
         self.fullName = "input[id='name']"
         self.mobile_signup = "input[id='number']"
-
+        self.country_code = "button[type='button']"
+        self.country_US = "(//span[text()='+1'])[1]"
 
     def create_account(self, fullName,email, mobile_signup, password):
         self.page.click("//span[text()='Sign up']")
         self.page.fill(self.fullName, fullName)
         self.page.fill(self.email_input, email)
-        self.page.fill(self.mobile_signup,mobile_signup)
+
+        # Select country code as US
+        self.page.click(self.country_code)
+        self.page.click(self.country_US)
+
+        # Re-click mobile field to bring focus back
+        mobile_field = self.page.locator(self.mobile_signup)
+        mobile_field.click()
+        mobile_field.type(mobile_signup, delay=100)  
+
+        # Fill password
         self.page.fill(self.password_input, password)
-        self.page.wait_for_timeout(2000)
+
+        # Submit form
         self.page.click(self.signup_button)
         self.page.wait_for_timeout(5000)
+        self.page.wait_for_event("load")
 
