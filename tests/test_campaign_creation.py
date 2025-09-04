@@ -8,7 +8,7 @@ from utils import config
 def test_create_campaign(page):
     # Step 1 - Create Account & Login
     # signup = SignupPage(page)
-    # signup.create_account(config.TEST_FULLNAME, config.TEST_USER_EMAIL, config.TEST_PHONE_NUMBER,config.TEST_USER_PASSWORD)
+    # signup.create_account(config.TEST_SIGNUP_FULLNAME, config.TEST_SIGNUP_EMAIL, config.TEST_SIGNUP_PHONE,config.TEST_SIGNUP_PASSWORD)
 
     login = LoginPage(page)
     login.login(config.TEST_USER_EMAIL, config.TEST_USER_PASSWORD)
@@ -24,6 +24,6 @@ def test_create_campaign(page):
     campaign.enter_campaign_title(config.CAMPAIGN_TITLE)
     campaign.enter_contact_phone()
     campaign.upload_logo(config.IMAGE_PATH) 
-    # campaign.edit_sms_content(config.MESSAGE, config.SMS_MESSAGE)
-    # campaign.test_sms(config.TEST_PHONE_NUMBER)
-    # campaign.save_and_exit()
+    campaign.edit_sms_content(config.MESSAGE, config.SMS_MESSAGE)
+    campaign.test_sms(config.TEST_PHONE_NUMBER)
+    campaign.save_and_exit()
