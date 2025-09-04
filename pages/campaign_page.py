@@ -31,16 +31,13 @@ class CampaignPage:
         # self.page.click(self.nextButton)
 
     def upload_logo(self, image_path: str):
-        """
-        Uploads a logo image on the campaign creative page.
-        :param image_path: Absolute path of the image file to upload
-        """
         # Locator for file input (hidden inside "Upload your logo" button)
         file_input = self.page.locator(".upload-btn")
 
         # Attach the file
         file_input.set_input_files(image_path)
-        self.page.wait_for_timeout(5000)
+        self.page.click("//span[text()='Save']")
+        self.page.click(self.nextButton)
 
         print(f"Logo uploaded successfully → {image_path}")
 
