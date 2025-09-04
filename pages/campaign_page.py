@@ -27,8 +27,6 @@ class CampaignPage:
     def enter_contact_phone(self):
         self.page.wait_for_timeout(2000)
         self.page.click(self.nextButton)
-        # self.page.wait_for_timeout(2000)
-        # self.page.click(self.nextButton)
 
     def upload_logo(self, image_path: str):
         # Locator for file input (hidden inside "Upload your logo" button)
@@ -39,13 +37,8 @@ class CampaignPage:
         self.page.click("//span[text()='Save']")
         self.page.click(self.nextButton)
 
-        print(f"Logo uploaded successfully → {image_path}")
-
     def edit_sms_content(self, first_text, second_text):
-        # Locate all spans inside the SMS editor
         spans = self.page.locator("//div[@class='textarea']//span[@contenteditable='true']")
-
-        # Ensure there are at least 2 spans
         count = spans.count()
         self.page.wait_for_timeout(2000)
 
@@ -61,8 +54,6 @@ class CampaignPage:
         self.page.keyboard.press("Backspace")
         spans.nth(1).type(second_text)
         self.page.click(self.nextButton)
-
-        print(f"Updated SMS spans → 1: '{first_text}', 2: '{second_text}'")
 
     def test_sms(self, phone):
         current_value = self.page.locator(self.inputField).input_value()
